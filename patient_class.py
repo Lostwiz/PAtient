@@ -39,8 +39,8 @@ class patient:
     def __get__nbVisite(self):
         return self.__nbVisites
 
-    def __set__nbvisite(self,p_nb):
-        if
+    #def __set__nbvisite(self,p_nb):
+        #if
 
 
 
