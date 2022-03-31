@@ -1,12 +1,11 @@
 class patient:
 
     def __init__(self, pNoPatient="", pNom="", pPrenom="", pDateNaiss="",
-                 pCourriel="", pNbVisites=0, pCommentaire=""):
+                 pNbVisites=0, pCommentaire=""):
         self.__noPatient = pNoPatient
         self.__Nom = pNom
         self.__Prenom = pPrenom
         self.__dateNaiss = pDateNaiss
-        self.__courriel = pCourriel
         self.__nbVisites = pNbVisites
         self.commentaire = pCommentaire
 
@@ -36,6 +35,12 @@ class patient:
             self.__Prenom = pprenom
 
     prenom = property(__get__prenom,__set__prenom)
+
+    def __get__nbVisite(self):
+        return self.__nbVisites
+
+    def __set__nbvisite(self,p_nb):
+        if
 
 
 
