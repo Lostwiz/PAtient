@@ -3,20 +3,25 @@ import sys
 import code_interface_genere as p
 from PyQt5 import QtWidgets, QtCore
 
+def lbl_hidden(fenetre):
+    fenetre.lbl_erreurnum.setVisible(False)
+    fenetre.lbl_erreur_prenom.setVisible(False)
+    fenetre.lbl_erreur_nom.setVisible(False)
+    fenetre.lbl_erreurVisite.setVisible(False)
+    fenetre.lbl_erreur_naissance.setVisible(False)
+
+
+
 class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
     def __init__(self, parent=None):
         super(Fenetreprin, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("Gestion des patients")
-    def lbl_hidden(self):
-        self.lbl_erreurnum.hide()
-        self.lbl_erreur_prenom()
-        self.lbl_erreur_nom
-        self.
+        lbl_hidden(self)
     @QtCore.pyqtSlot()
     def on_btn_valider_clicked(self):
-        nom = self.lnedt_nom.text()
-        num = self.lnedt_num.text()
+        nom = self.lnedt_nom.text(self)
+        num = self.lnedt_num.text(self)
         datenais = self.date_naissance_edit.date()
         
 
