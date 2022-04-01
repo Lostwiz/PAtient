@@ -2,6 +2,7 @@ import patient_class
 import sys
 import code_interface_genere as p
 from PyQt5 import QtWidgets, QtCore
+import datetime
 
 def lbl_hidden(fenetre):
     fenetre.lbl_erreurnum.setVisible(False)
@@ -20,9 +21,7 @@ class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
         lbl_hidden(self)
     @QtCore.pyqtSlot()
     def on_btn_valider_clicked(self):
-        nom = self.lnedt_nom.text(self)
-        num = self.lnedt_num.text(self)
-        datenais = self.date_naissance_edit.date()
+        print(self.date_naissance_edit.date())
         
 
 
