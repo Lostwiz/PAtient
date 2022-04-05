@@ -2,6 +2,7 @@ import patient_class
 import sys
 import code_interface_genere as p
 from PyQt5 import QtWidgets, QtCore
+import json
 import datetime
 
 def lbl_hidden(fenetre):
@@ -31,8 +32,8 @@ class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
         str_nom = self.lnedt_nom.text()
         str_prenom = self.lnedt_prenom.text()
         nbVisite = self.lnedt_visite.text()
-        objPatient.Naissance = dateNai
-        if objPatient.Naissance != dateNai :
+        objPatient.Naissance = dateNai.toPyDate()
+        if objPatient.Naissance == "broken":
             self.lbl_erreur_naissance.setVisible(True)
             valide = False
         objPatient.noPatient = num

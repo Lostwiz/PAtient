@@ -1,7 +1,9 @@
-import datetime
+import json
+from datetime import *
 class patient:
 
-    def __init__(self, pNoPatient="", pNom="erreur!", pPrenom="erreur!", pDateNaiss="",
+
+    def __init__(self, pNoPatient="", pNom="erreur!", pPrenom="erreur!", pDateNaiss=datetime.now(),
                  pNbVisites=0, pCommentaire=""):
         self.__noPatient = pNoPatient
         self.__Nom = pNom
@@ -60,29 +62,38 @@ class patient:
     def __get__date(self):
         return self.__dateNaiss
 
-    def __set__date(self,date):
-        print("hey")
-        aujourdhui = datetime.date.today()
-        if date < aujourdhui:
+    def __set__date(self,dates):
+        print(dates)
+        aujourdhui = date.today()
+        print(aujourdhui)
+        if dates < aujourdhui:
             print("why")
-            self.__dateNaiss = date
+            self.__dateNaiss = dates
+        else:
+            self.__dateNaiss = "broken"
 
     Naissance = property(__get__date,__set__date)
 
     def __str__(self):
+        print(self.Naissance.strftime('%d/%m/%Y'))
         return("*"*90+"\n"+
                f"numero du patient :{self.noPatient:>141}\n"
                f"nom du patient      :  {self.nom:>145}\n"
                f"prenom du patient   : {self.prenom:>145}\n"
                f"courriel            :{self.Courriel:>141}\n"
-               f"date de naisance    :{str(self.Naissance)}")
+               f"date de naisance    :{self.Naissance.strftime('%d/%m/%Y')}")
     def calculer_age(self):
-        import datetime
-        Aujourdhui = datetime.date.today()
-        return Aujourdhui.year - self.year - ((Aujourdhui.month, Aujourdhui.day)
+        Aujourdhui = date.today()
+        return Aujourdhui.year - self.Naissance.year- ((Aujourdhui.month, Aujourdhui.day)
                                               < (self.Naissance.month,self.Naissance.day))
     def calculer_cout_total(self):
         return self.NbVisite * 25
+    def sauvgarder(self,p_sauv):
+        with open(p_sauv,"w") as sauv:
+            json.dump(self.__dict__, sauv)
+
+
+
 
 
 
