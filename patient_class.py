@@ -75,7 +75,7 @@ class patient:
                f"nom du patient      :  {self.nom:>145}\n"
                f"prenom du patient   : {self.prenom:>145}\n"
                f"courriel            :{self.Courriel:>141}\n"
-               f"date de naisance")
+               f"date de naisance    :{str(self.Naissance)}")
     def calculer_age(self):
         import datetime
         Aujourdhui = datetime.date.today()
