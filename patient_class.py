@@ -1,6 +1,7 @@
+import datetime
 class patient:
 
-    def __init__(self, pNoPatient="", pNom="", pPrenom="", pDateNaiss="",
+    def __init__(self, pNoPatient="", pNom="erreur!", pPrenom="erreur!", pDateNaiss="",
                  pNbVisites=0, pCommentaire=""):
         self.__noPatient = pNoPatient
         self.__Nom = pNom
@@ -13,7 +14,8 @@ class patient:
         return self.__noPatient
 
     def __set__noPatient(self,pNumero):
-        if pNumero.isnumeric() and pNumero.len == 7 :
+        print("hey")
+        if pNumero.isnumeric() and len(pNumero) == 7 :
             self.__noPatient = pNumero
 
     noPatient = property(__get__noPatient,__set__noPatient)
@@ -22,7 +24,8 @@ class patient:
         return self.__Nom
 
     def __set__nom(self,pnom):
-        if pnom.isalpha() and pnom <= 30 and pnom.len != 0:
+        print(len(pnom))
+        if pnom.isalpha() and len(pnom) <= 30 and len(pnom) > 0:
             self.__Nom = pnom
 
     nom = property(__get__Nom,__set__nom)
@@ -31,7 +34,7 @@ class patient:
         return self.__Prenom
 
     def __set__prenom(self,pprenom):
-        if pprenom.isalpha() and pprenom <= 30:
+        if pprenom.isalpha() and len(pprenom) <= 30 and len(pprenom) > 0:
             self.__Prenom = pprenom
 
     prenom = property(__get__prenom,__set__prenom)
@@ -40,8 +43,11 @@ class patient:
         return self.__nbVisites
 
     def __set__nbvisite(self,p_nb):
-        if p_nb.isalpha():
+        print("HEY")
+        if p_nb.isnumeric():
             self.__nbVisites = int(p_nb)
+        else:
+            self.__nbVisites = "INVALIDE"
 
     NbVisite = property(__get__nbVisite,__set__nbvisite)
 
@@ -55,16 +61,21 @@ class patient:
         return self.__dateNaiss
 
     def __set__date(self,date):
-        if date > datetime.date.today():
+        print("hey")
+        aujourdhui = datetime.date.today()
+        if date < aujourdhui:
+            print("why")
             self.__dateNaiss = date
 
     Naissance = property(__get__date,__set__date)
-
     def calculer_age(self):
         import datetime
         Aujourdhui = datetime.date.today()
         return Aujourdhui.year - self.year - ((Aujourdhui.month, Aujourdhui.day)
                                               < (self.Naissance.month,self.Naissance.day))
+    def calculer_cout_total(self):
+        return self.NbVisite * 25
+
 
 
 
