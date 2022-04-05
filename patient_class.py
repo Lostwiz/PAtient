@@ -91,7 +91,7 @@ class patient:
     def sauvgarder(self,p_sauv):
         with open(p_sauv,"w") as sauv:
             json.dump(self.__dict__, sauv)
-
+    def
 
 
 
