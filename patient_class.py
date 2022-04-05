@@ -68,6 +68,14 @@ class patient:
             self.__dateNaiss = date
 
     Naissance = property(__get__date,__set__date)
+
+    def __str__(self):
+        return("*"*90+"\n"+
+               f"numero du patient :{self.noPatient:>141}\n"
+               f"nom du patient      :  {self.nom:>145}\n"
+               f"prenom du patient   : {self.prenom:>145}\n"
+               f"courriel            :{self.Courriel:>141}\n"
+               f"date de naisance")
     def calculer_age(self):
         import datetime
         Aujourdhui = datetime.date.today()

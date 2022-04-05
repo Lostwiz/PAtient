@@ -35,12 +35,10 @@ class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
         if objPatient.Naissance != dateNai :
             self.lbl_erreur_naissance.setVisible(True)
             valide = False
-        print("1")
         objPatient.noPatient = num
         if objPatient.noPatient != num:
             self.lbl_erreurnum.setVisible(True)
             valide = False
-        print("2")
         objPatient.NbVisite = nbVisite
         if objPatient.NbVisite == "INVALIDE":
             self.lbl_erreurVisite.setVisible(True)
@@ -49,16 +47,14 @@ class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
             self.lbl_erreur_nom.setVisible(True)
             valide = False
         objPatient.prenom = str_prenom
-        print("3")
         if objPatient.prenom != str_prenom:
             self.lbl_erreur_prenom.setVisible(True)
             valide = False
         if valide:
             lstClient.append(objPatient)
-        print("hey")
-        self.txt_patients.
+        self.txt_patients.clear()
         for patient in lstClient:
-            self.txt_patients.append(patient)
+            self.txt_patients.append(str(patient))
 
 
 
