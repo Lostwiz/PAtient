@@ -2,7 +2,6 @@
 import json
 from datetime import *
 class patient:
-
     # constructeur init class intial
     def __init__(self, pNoPatient="", pNom="erreur!", pPrenom="erreur!", pDateNaiss=datetime.now(),
                  pNbVisites=0, pCommentaire=""):
@@ -104,7 +103,7 @@ class patient:
         with open(p_sauv,"w") as sauv:
             json.dump(self.__dict__, sauv)
     def ouvrir(self,p_ouvr):
-        with open(p_ouvr,"r") as ouvrir
+        with open(p_ouvr,"r") as ouvrir:
             self.__dict__ = json.load(ouvrir)
 
 

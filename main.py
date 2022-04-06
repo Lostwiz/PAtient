@@ -1,3 +1,4 @@
+import os
 import patient_class
 import  code_dialogue_box as d
 import sys
@@ -6,9 +7,9 @@ from PyQt5 import QtWidgets, QtCore
 import json
 import datetime
 # CAcher les label de la fentre de serialisation
-#def lbl_error_hidden(fenetre):
-    #fenetre.lblSerialEchou.setVisible(False)
-    #fenetre.lblSerialFonc.setVisible(False)
+def lbl_error_hidden(fenetre):
+    fenetre.lblSerialEchou.setVisible(False)
+    fenetre.lblSerialFonc.setVisible(False)
 
 
 # cacher les label de fentre principal
@@ -19,6 +20,13 @@ def lbl_hidden(fenetre):
     fenetre.lbl_erreurVisite.setVisible(False)
     fenetre.lbl_erreur_naissance.setVisible(False)
     # inspirer de l'exerise class etudiant
+
+# voir si le numero est valide
+def Num_valide(p_num)
+    for clients in lstClient:
+        if clients.noPatient == p_num:
+            return False
+    return True
 # lst client pour garder objet
 lstClient = []
 
@@ -28,6 +36,19 @@ class fenetresecon(QtWidgets.QDialog,d.Ui_Dialog):
         super(fenetresecon, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("serialisation")
+        global nom_fichier
+        lbl_error_hidden()
+        for patient in lstClient:
+            if patient.noPatient == self.lnedt_num.text():
+                try :
+                    nom_fichier = f"Fichierjson/{patient.nom}_{patient.prenom}.json"
+                    patient.sauvgarder(nom_fichier)
+                    self.lblSerialFonc.setVisible(True)
+                except:
+                    self.lblSerialEchou.setVisible(True)
+
+
+
 
 # intial fentre principal
 class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
@@ -43,7 +64,7 @@ class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
         lbl_hidden(self)
         # interrupteur pour valeur validation
         valide = True
-        # prise dess valeur pour l'objet
+        # prise dess valeur pour création d'un objet patient.
         dateNai = self.date_naissance_edit.date()
         num = self.lnedt_num.text()
         str_nom = self.lnedt_nom.text()
@@ -57,7 +78,7 @@ class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
             self.lbl_erreur_naissance.setVisible(True)
             valide = False
         objPatient.noPatient = num
-        if objPatient.noPatient != num:
+        if objPatient.noPatient != num and Num_valide(num):
             self.lbl_erreurnum.setVisible(True)
             valide = False
         objPatient.NbVisite = nbVisite
@@ -79,16 +100,15 @@ class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
             self.txt_patients.append(str(patient))
     # code pour releas du bouton patient
     def on_btn_sauvgarder_released(self):
-        for patient in lstClient:
-            if patient.noPatient == self.lnedt_num.text():
-                nom_fichier = f"Fichierjson/{patient.nom}_{patient.prenom}.json"
-                patient.sauvgarder(nom_fichier)
         ui = fenetresecon()
         ui.show()
         ui.exec_()
     def on_btn_ouvrir_released(self):
-
-
+        clients = os.listdir("Fichierjson/")
+        for client in clients
+            obj_patient = patient_class.patient()
+            obj_patient.ouvrir(f"fichierjson/{client}")
+            if obj_patient.noPatient ==
 def main():
     app = QtWidgets.QApplication(sys.argv)
     form = Fenetreprin()
