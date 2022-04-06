@@ -87,15 +87,16 @@ class patient:
                f"numero du patient :{self.noPatient:>141}\n"
                f"nom du patient      :  {self.nom:>145}\n"
                f"prenom du patient   : {self.prenom:>145}\n"
-               f"courriel            :{self.Courriel:>141}\n"
-               f"date de naisance    :{self.Naissance}\n"
-               f"commentaire         :{self.Commentaire}")
+               f"courriel            :{self.Courriel:>140}\n"
+               f"date de naisance    :{self.Naissance:>140}\n"
+               f"commentaire         :{self.Commentaire:>145}")
     # cacule age inspiration :
     # https://fr.acervolima.com/programme-python-pour-calculer-lage-en-annee/#:~:text=Python%20fournit%20un%20module%20datetime,de%20naissance%20et%20l'anniversaire.
     def calculer_age(self):
         Aujourdhui = date.today()
-        return Aujourdhui.year - self.Naissance.year- ((Aujourdhui.month, Aujourdhui.day)
-                                              < (self.Naissance.month,self.Naissance.day))
+        naissance = datetime.strptime(self.Naissance, '%d/%m/%Y')
+        return Aujourdhui.year - naissance.year- ((Aujourdhui.month, Aujourdhui.day)
+                                              < (naissance.month,naissance.day))
     def calculer_cout_total(self):
         return self.NbVisite * 25
     ###  SERIALISATION INSPIRER DE l'exercise class etudiant
@@ -103,8 +104,8 @@ class patient:
         with open(p_sauv,"w") as sauv:
             json.dump(self.__dict__, sauv)
     def ouvrir(self,p_ouvr):
-        with open(p_ouvr,"r") as ouvrir:
-            self.__dict__ = json.load(ouvrir)
+        with open(p_ouvr,"r") as fichier:
+            self.__dict__ = json.load(fichier)
 
 
 

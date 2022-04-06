@@ -1,11 +1,22 @@
+####################################################################################
+###  420-2G2 - Programmation orientée objet
+###  Travail: Projet iNtra
+###  Nom: Xavier Ennis
+###  No étudiant: 123456
+###  No Groupe: 0000001
+###  Description du fichier: main du projet intra
+####################################################################################
+#importation os pour chercher dans les dossier
 import os
+# importation class patient
 import patient_class
+#impiortation de la dialogue box
 import  code_dialogue_box as d
+# importation de sys
 import sys
+# importation de l'interface
 import code_interface_genere as p
 from PyQt5 import QtWidgets, QtCore
-import json
-import datetime
 # CAcher les label de la fentre de serialisation
 def lbl_error_hidden(fenetre):
     fenetre.lblSerialEchou.setVisible(False)
@@ -22,7 +33,7 @@ def lbl_hidden(fenetre):
     # inspirer de l'exerise class etudiant
 
 # voir si le numero est valide
-def Num_valide(p_num)
+def Num_valide(p_num):
     for clients in lstClient:
         if clients.noPatient == p_num:
             return False
@@ -36,16 +47,7 @@ class fenetresecon(QtWidgets.QDialog,d.Ui_Dialog):
         super(fenetresecon, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("serialisation")
-        global nom_fichier
-        lbl_error_hidden()
-        for patient in lstClient:
-            if patient.noPatient == self.lnedt_num.text():
-                try :
-                    nom_fichier = f"Fichierjson/{patient.nom}_{patient.prenom}.json"
-                    patient.sauvgarder(nom_fichier)
-                    self.lblSerialFonc.setVisible(True)
-                except:
-                    self.lblSerialEchou.setVisible(True)
+        lbl_error_hidden(self)
 
 
 
@@ -94,21 +96,37 @@ class Fenetreprin(QtWidgets.QMainWindow, p.Ui_MainWindow):
             valide = False
         if valide:
             lstClient.append(objPatient)
+            print(objPatient.calculer_age())
         #efface de la liste et renplacement par la nouvelle
         self.txt_patients.clear()
         for patient in lstClient:
             self.txt_patients.append(str(patient))
     # code pour releas du bouton patient
     def on_btn_sauvgarder_released(self):
-        ui = fenetresecon()
-        ui.show()
-        ui.exec_()
+        num_chercher = self.lnedt_num.text()
+        for patient in lstClient:
+            if patient.noPatient == num_chercher:
+                patienSauv = patient
+                nom_fichier = f"Fichierjson/{patienSauv.nom}_{patienSauv.prenom}.json"
+                patienSauv.sauvgarder(nom_fichier)
+                ui = fenetresecon()
+                ui.show()
+                ui.exec_()
+    #code serialisation et de rechecherche
+    # information et inspiration du module os :
+    # https://waytolearnx.com/2019/04/comment-lister-tous-les-fichiers-dun-repertoire-en-python.html
     def on_btn_ouvrir_released(self):
         clients = os.listdir("Fichierjson/")
-        for client in clients
+        for client in clients:
+            path = f"Fichierjson/{client}"
             obj_patient = patient_class.patient()
-            obj_patient.ouvrir(f"fichierjson/{client}")
-            if obj_patient.noPatient ==
+            obj_patient.ouvrir(path)
+            if obj_patient.noPatient == self.lnedt_num.text():
+                lstClient.append(obj_patient)
+                self.txt_patients.clear()
+                for patient in lstClient:
+                    self.txt_patients.append(str(obj_patient))
+                break
 def main():
     app = QtWidgets.QApplication(sys.argv)
     form = Fenetreprin()
