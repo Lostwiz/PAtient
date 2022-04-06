@@ -23,43 +23,47 @@ class patient:
     #propirité no patient
     noPatient = property(__get__noPatient,__set__noPatient)
 
+    #GET et setter du nom du patient
     def __get__Nom(self):
         return self.__Nom
 
     def __set__nom(self,pnom):
-        print(len(pnom))
+        # verification nom alphabétique et entre 1 et 30 carcatere
         if pnom.isalpha() and len(pnom) <= 30 and len(pnom) > 0:
             self.__Nom = pnom
 
+    # proprieté nom du patient
     nom = property(__get__Nom,__set__nom)
 
+    #propriété et prenom du patient
     def __get__prenom(self):
         return self.__Prenom
 
     def __set__prenom(self,pprenom):
+        # verification prenom alphabétique et entre 1 et 30 caractere
         if pprenom.isalpha() and len(pprenom) <= 30 and len(pprenom) > 0:
             self.__Prenom = pprenom
 
+    # prropriété prenom du  patient
     prenom = property(__get__prenom,__set__prenom)
-
+    # get et setter du nb de visite
     def __get__nbVisite(self):
         return self.__nbVisites
 
     def __set__nbvisite(self,p_nb):
-        print("HEY")
         if p_nb.isnumeric():
             self.__nbVisites = int(p_nb)
         else:
             self.__nbVisites = "INVALIDE"
-
+    # propriété nb de visite
     NbVisite = property(__get__nbVisite,__set__nbvisite)
-
+    # mise en place et formatage du courrielle
     def __get__couriel(self):
         courielle = f"{self.prenom}_{self.nom}@cabinetmedical.ca"
         return courielle
-
+    #proriétét courrielle
     Courriel = property(__get__couriel)
-
+    #mise en place de naissance
     def __get__date(self):
         return self.__dateNaiss
 
@@ -71,7 +75,7 @@ class patient:
             self.__dateNaiss = "broken"
 
     Naissance = property(__get__date,__set__date)
-
+    #propriét commentair et get et setter
     def __get__commentaire(self):
         return self.__commentaire
     def __set__commentaire(self,p_comment):
