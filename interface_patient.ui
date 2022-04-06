@@ -256,16 +256,6 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#f35d06;&quot;&gt;Entrer un entier positif.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="txtedt_commentaire">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>70</y>
-      <width>221</width>
-      <height>181</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextBrowser" name="txt_patients">
     <property name="geometry">
      <rect>
@@ -347,6 +337,38 @@
      <string>Recherche</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="lnedtCommentair">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>80</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>txt_patients</zorder>
+   <zorder>date_naissance_edit</zorder>
+   <zorder>lbl_naissance</zorder>
+   <zorder>lbl_erreur_naissance</zorder>
+   <zorder>lbl_nuEtu</zorder>
+   <zorder>lnedt_num</zorder>
+   <zorder>lbl_erreurnum</zorder>
+   <zorder>lbl_nom</zorder>
+   <zorder>lnedt_nom</zorder>
+   <zorder>lbl_erreur_nom</zorder>
+   <zorder>lbl_prenom</zorder>
+   <zorder>lnedt_prenom</zorder>
+   <zorder>lbl_erreur_prenom</zorder>
+   <zorder>lbl_nbVisite</zorder>
+   <zorder>lnedt_visite</zorder>
+   <zorder>lbl_erreurVisite</zorder>
+   <zorder>lbl_commentaire</zorder>
+   <zorder>btn_valider</zorder>
+   <zorder>btn_sauvgarder</zorder>
+   <zorder>btn_ouvrir</zorder>
+   <zorder>btn_recherche</zorder>
+   <zorder>lnedtCommentair</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
